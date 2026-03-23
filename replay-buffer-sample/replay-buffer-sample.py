@@ -1,0 +1,12 @@
+import numpy as np
+
+def replay_buffer_sample(buffer, batch_size, seed):
+    """
+    Sample a batch of transitions from the replay buffer.
+    """
+    # Write code here
+    rng = np.random.RandomState(seed)
+    indices = rng.choice(len(buffer), batch_size, replace=False).tolist()
+    sample = [buffer[i] for i in sorted(indices)]
+    
+    return sample
