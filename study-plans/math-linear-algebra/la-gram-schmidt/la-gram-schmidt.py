@@ -10,7 +10,7 @@ def gram_schmidt(vectors):
     for i in range(len(V)):
         n = 0
         for j in range(i):
-            n += (V[i] @ V[j]) / (V[j] @ V[j]) * V[j]
+            n += (V[i] @ Q[j]) * Q[j]
             
         V[i] -= n
         Q[i] =  V[i] / np.linalg.norm(V[i])
