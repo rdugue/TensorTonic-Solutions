@@ -11,9 +11,9 @@ def qr_decompose(A):
 
     for j in range(n):
         v = A[:, j].copy()
-        for i in range(j):
-            R[i, j] = np.dot(Q[:, i], A[:, j])
-            v -= R[i, j] * Q[:, i]
+        if j > 0:
+            R[:j, j] = Q[:, :j].T @ v
+            v -= Q[:, :j] @ R[:j, j]
         R[j, j] = np.linalg.norm(v)
         Q[:, j] = v / R[j, j]
 
