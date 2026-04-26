@@ -1,0 +1,9 @@
+import numpy as np
+
+def least_squares(A, b):
+    """
+    Returns: float64 array, the solution minimizing ||A @ x - b||^2.
+    """
+    A = np.array(A, dtype=np.float64)
+    b = np.array(b)
+    return np.linalg.lstsq(A, b)[0]
