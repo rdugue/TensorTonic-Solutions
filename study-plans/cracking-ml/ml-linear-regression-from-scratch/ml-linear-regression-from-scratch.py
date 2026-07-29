@@ -4,18 +4,20 @@ def linear_regression(X, y, lr, epochs):
     """
     Returns: tuple (weights, bias)
     """
-    X = np.array(X, dtype=np.float64)
+    X = np.asarray(X, dtype=float)
+    y = np.asarray(y, dtype=float)
     m, n = X.shape
-    y = np.array(y, dtype=np.float64)
-    W = np.zeros(n)
+    W = np.zeros(n, dtype=float)
     b = 0.0
 
     for _ in range(epochs):
         y_hat = X @ W + b
         error = y_hat - y
-        dl_dw = (X.T @ error) * 2 / m
-        dl_db = np.sum(error)  * 2 / m
-        W -= lr * dl_dw
-        b -= lr * dl_db
+        dw = 2 / m * (X.T @ error)
+        db = 2 / m * np.sum(error)
+        W -= lr * dw
+        b -= lr * db
 
-    return (W.tolist(), b)
+    weights = np.round(W, 4)
+    bias = round(b, 4)
+    return weights, bias
